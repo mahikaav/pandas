@@ -1,0 +1,57 @@
+import pandas as pd
+fruits = pd.DataFrame({'Apples': [30],'Bananas': [21]})
+---
+	Apples	Bananas
+0	30	21
+---
+fruit_sales = pd.DataFrame({'Apples':[35,41],'Bananas':[21,34]}, index = ['2017 Sales','2018 Sales'])
+---
+    	Apples	Bananas
+2017 Sales	35	21
+2018 Sales	41	34
+---
+    
+#Create a variable ingredients with a Series that looks like:
+
+#Flour     4 cups
+#Milk       1 cup
+#Eggs     2 large
+#Spam       1 can
+#Name: Dinner, dtype: object
+
+quantities = ['4 cups', '1 cup', '2 large', '1 can']
+items = ['Flour', 'Milk', 'Eggs', 'Spam']
+ingredients = pd.Series(quantities, index=items, name='Dinner')
+
+#if the CSV file has a built-in index, and to make pandas use that column for the index (instead of creating a new one from scratch), we can specify an index_col
+reviews = pd.read_csv('../input/wine-reviews/winemag-data_first150k.csv',index_col=0)
+
+--
+#now output becomes
+	country	description	designation	points	price	province	region_1	region_2	variety	winery
+0	US	This tremendous 100% varietal wine hails from ...	Martha's Vineyard	96	235.0	California	Napa Valley	Napa	Cabernet Sauvignon	Heitz
+1	Spain	Ripe aromas of fig, blackberry and cassis are ...	Carodorum Selección Especial Reserva	96	110.0	Northern Spain	Toro	NaN	Tinta de Toro	Bodega Carmen Rodríguez
+...	...	...	...	...	...	...	...	...	...	...
+150928	France	A perfect salmon shade, with scents of peaches...	Grand Brut Rosé	90	52.0	Champagne	Champagne	NaN	Champagne Blend	Gosset
+150929	Italy	More Pinot Grigios should taste like this. A r...	NaN	90	15.0	Northeastern Italy	Alto Adige	NaN	Pinot Grigio	Alois Lageder
+
+#and earlier it was       
+	Unnamed: 0	country	description	designation	points	price	province	region_1	region_2	variety	winery
+0	0	US	This tremendous 100% varietal wine hails from ...	Martha's Vineyard	96	235.0	California	Napa Valley	Napa	Cabernet Sauvignon	Heitz
+1	1	Spain	Ripe aromas of fig, blackberry and cassis are ...	Carodorum Selección Especial Reserva	96	110.0	Northern Spain	Toro	NaN	Tinta de Toro	Bodega Carmen Rodríguez
+...	...	...	...	...	...	...	...	...	...	...	...
+150928	150928	France	A perfect salmon shade, with scents of peaches...	Grand Brut Rosé	90	52.0	Champagne	Champagne	NaN	Champagne Blend	Gosset
+150929	150929	Italy	More Pinot Grigios should taste like this. A r...	NaN	90	15.0	Northeastern Italy	Alto Adige	NaN	Pinot Grigio	Alois Lageder
+---
+
+#display a DataFrame called animals:
+animals = pd.DataFrame({'Cows': [12, 20], 'Goats': [22, 19]}, index=['Year 1', 'Year 2'])
+animals
+---
+ 	Cows	Goats
+Year 1	12	22
+Year 2	20	19
+---
+#write code to save this DataFrame to disk as a csv file with the name cows_and_goats.csv
+animals.to_csv("cows_and_goats.csv")
+# Use to_csv to save a DataFrame to a CSV file.                         
